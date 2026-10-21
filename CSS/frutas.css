@@ -635,6 +635,225 @@ img {
 }
 
 /* ==========================================================
+   CATÁLOGO: muestras fotográficas por fruta
+   ========================================================== */
+
+.fruit-catalog {
+  background: #fff;
+}
+
+.fruit-catalog-list {
+  display: grid;
+  gap: 24px;
+}
+
+.fruit-sample {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(14px, 2vw, 22px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+}
+
+/* Barra de color propia de cada fruta */
+.fruit-sample::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 6px;
+  background: var(--fruit, var(--sun));
+  content: "";
+}
+
+/* Las filas pares invierten el orden: foto a la izquierda */
+.fruit-sample:nth-child(even) .fruit-sample-info {
+  order: 2;
+}
+
+.fruit-sample-info {
+  padding: clamp(8px, 2vw, 24px) clamp(8px, 2vw, 28px);
+}
+
+.fruit-sample-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--fruit, var(--sun));
+  color: var(--ink);
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.fruit-sample h3 {
+  margin: 14px 0 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.fruit-sample-info p {
+  max-width: 400px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.fruit-sample-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 22px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.fruit-sample-link::after {
+  margin-left: 8px;
+  content: "→";
+  transition: transform 0.2s ease;
+}
+
+.fruit-sample-link:hover {
+  background: var(--sun);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.fruit-sample-link:hover::after {
+  transform: translateX(4px);
+}
+
+.fruit-sample-photos {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  height: 340px;
+}
+
+.fruit-sample-photos figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--line);
+}
+
+/* Foto principal: ocupa las dos filas */
+.fruit-sample-photos figure:first-child {
+  grid-row: 1 / -1;
+}
+
+/* Si solo hay dos fotos, la segunda también ocupa las dos filas */
+.fruit-sample-photos figure:nth-child(2):last-child {
+  grid-row: 1 / -1;
+}
+
+.fruit-sample-photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.fruit-sample-photos figure:hover img {
+  transform: scale(1.06);
+}
+
+.fruit-sample-photos figcaption {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 90%);
+  box-shadow: 0 4px 12px rgb(20 36 27 / 14%);
+  color: var(--ink);
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+}
+
+.fruit-catalog-note {
+  max-width: 680px;
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@supports (animation-timeline: view()) {
+  .fruit-sample {
+    animation: fruit-rise linear backwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fruit-sample {
+    animation: none;
+  }
+
+  .fruit-sample-photos img {
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .fruit-sample {
+    grid-template-columns: 1fr;
+  }
+
+  .fruit-sample:nth-child(even) .fruit-sample-info {
+    order: 0;
+  }
+
+  .fruit-sample-info {
+    padding: 8px 8px 0 14px;
+  }
+
+  .fruit-sample-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    height: auto;
+  }
+
+  .fruit-sample-photos figure {
+    height: 200px;
+  }
+
+  .fruit-sample-photos figure:first-child,
+  .fruit-sample-photos figure:nth-child(2):last-child {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    height: 260px;
+  }
+}
+
+/* ==========================================================
    SOLICITUDES: foto a sangre con tarjeta flotante
    ========================================================== */
 

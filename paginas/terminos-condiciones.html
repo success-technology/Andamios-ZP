@@ -434,9 +434,8 @@
       </footer>
     </div>
     <script>
-            document.querySelectorAll(".current-year").forEach(el=>el.textContent=new Date().getFullYear());
+      document.querySelectorAll(".current-year").forEach(el=>el.textContent=new Date().getFullYear());
 
-            /* Menú hamburguesa — pegar antes de </body> (o enlazar como archivo) */
       (function () {
         var header = document.getElementById("page-header");
         if (!header) return;
