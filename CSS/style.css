@@ -1675,3 +1675,88 @@ section {
     transition: none;
   }
 }
+
+/* ==========================================================
+   GLOBO GIRATORIO DECORATIVO
+   Un solo globo (/img/globo.svg, animado) ocupa todo el fondo de
+   la página y se queda fijo mientras se hace scroll. Las secciones
+   claras son transparentes para dejarlo ver; las tarjetas blancas
+   llevan además su propio globo. No requiere cambios en el HTML.
+   ========================================================== */
+
+/* Fondo global */
+.site {
+  position: relative;
+  isolation: isolate;
+}
+
+.site::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("/img/globo.svg") center / cover no-repeat;
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* Secciones claras: transparentes (las grises quedan semitransparentes) */
+.services {
+  background: rgba(245, 246, 248, 0.6);
+}
+
+.safety {
+  background: rgba(247, 248, 250, 0.6);
+}
+
+.process,
+.fruits,
+.about,
+.mission-vision {
+  background: transparent;
+}
+
+/* Tarjetas blancas: globo propio que cubre toda la tarjeta */
+.service-card-content,
+.mission-copy,
+.safe-card:not(.blue) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Menos movimiento: globo estático */
+@media (prefers-reduced-motion: reduce) {
+  .site::before {
+    background-image: url("/img/globo-estatico.svg");
+  }
+}
+
+/* Que el contenido de la tarjeta llene todo el alto */
+.service-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card .service-image {
+  flex: none;
+}
+
+.service-card-content {
+  flex: 1;
+}
+
+@media (min-width: 901px) {
+  .mission-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mission-image {
+    flex: none;
+  }
+
+  .mission-copy {
+    flex: 1;
+  }
+}

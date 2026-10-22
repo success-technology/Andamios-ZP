@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" fill="none" stroke="#2f3a73" stroke-width="0.7">
+  <circle r="90"/>
+  <ellipse cy="-77.94" rx="45.00" ry="5.40"/>
+  <ellipse cy="-45.00" rx="77.94" ry="9.35"/>
+  <ellipse cy="0.00" rx="90.00" ry="10.80"/>
+  <ellipse cy="45.00" rx="77.94" ry="9.35"/>
+  <ellipse cy="77.94" rx="45.00" ry="5.40"/>
+  <ellipse ry="90" rx="84.57"/>
+  <ellipse ry="90" rx="57.85"/>
+  <ellipse ry="90" rx="15.63"/>
+  <ellipse ry="90" rx="30.78"/>
+  <ellipse ry="90" rx="68.94"/>
+  <ellipse ry="90" rx="88.63"/>
+</svg>
